@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Sarmiento | Systems Engineer & AI Architect</title>
+    <!-- React & Babel for Browser Rendering -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .timeline-line { width: 2px; background: #e2e8f0; position: absolute; left: 27px; top: 40px; bottom: -40px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Simple Icon Component to wrap Lucide
+        const Icon = ({ name, className }) => {
+            useEffect(() => {
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+            }, [name]);
+            return <i data-lucide={name} className={className}></i>;
+        };
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('engineering');
+
+            const timeline = [
+                {
+                    year: "2026",
+                    title: "Artificial Intelligence Orchestration",
+                    description: "Developed an end-to-end Print-on-Demand pipeline utilizing Google Gemini 2.5 and Imagen 4.0. The system automates trend analysis, high-precision vectorization for background removal, and Search Engine Optimization (SEO) for direct marketplace deployment.",
+                    icon: "zap"
+                },
+                {
+                    year: "2023-Present",
+                    title: "Defense Systems Engineering Lead",
+                    description: "Systems Engineering Lead at KODA Technologies for the Future Long Range Assault Aircraft (FLRAA) program. Acting as Subject Matter Expert for Degraded Visual Environment (DVE) sensor integration and situational awareness systems for pilots during all flight phases.",
+                    icon: "shield"
+                },
+                {
+                    year: "2022-2023",
+                    title: "Space Exploration Systems",
+                    description: "Lead Systems Engineer at Dynetics for a National Aeronautics and Space Administration (NASA) standard docking system. Architected systems for mated crew modules and subsystems supporting missions in both Low Earth Orbit (LEO) and lunar orbit.",
+                    icon: "rocket"
+                },
+                {
+                    year: "2021-2022",
+                    title: "Payloads Product Development (Boeing)",
+                    description: "Matured future payload concepts to a minimum Technology Readiness Level (TRL) 3. Developed digital and physical mockups to validate sustainable technologies for active airplane sales campaigns.",
+                    icon: "cpu"
+                },
+                {
+                    year: "2019-2021",
+                    title: "Lead Design Engineer (Boeing)",
+                    description: "Led the vertical integration of galley systems as a new market entrant. Defined system architecture, managed cost and schedule, and achieved executive buy-off for a modular product family used across major aircraft platforms.",
+                    icon: "award"
+                },
+                {
+                    year: "2017-2019",
+                    title: "Interior Design Engineer (Boeing)",
+                    description: "Responsible for the successful installation and certification of complex interiors for five major international airlines. Designed solutions for major build issues, resulting in an estimated avoidance of over 1,000 labor hours of rework.",
+                    icon: "layout"
+                },
+                {
+                    year: "2016-2017",
+                    title: "Interiors Integration & Liaison (Boeing)",
+                    description: "Managed the build and certification schedules for aircraft interiors across a dozen major airlines. Provided critical coordination for customer introductions and change airplanes driving certification activities.",
+                    icon: "arrow-right"
+                },
+                {
+                    year: "2011",
+                    title: "Interactive Education & Controls",
+                    description: "Writer and Digital Illustrator for Omninox, developing interactive college-level textbooks. Simultaneously engineered Proportional-Integral-Derivative (PID) control systems at the University of Florida Controls Lab.",
+                    icon: "terminal"
+                },
+                {
+                    year: "2006-2010",
+                    title: "Digital Design Roots",
+                    description: "Webmaster for 'The Fresh Beat' electronic music blog. Specialized in high-traffic community platforms for World of Warcraft and social profile architecture for MySpace and DeviantArt.",
+                    icon: "palette"
+                }
+            ];
+
+            const skillGroups = {
+                engineering: [
+                    { name: "Model-Based Systems Engineering", level: "Expert" },
+                    { name: "Systems Modeling Language (SysML)", level: "Expert" },
+                    { name: "Aerospace Product Lifecycle", level: "Senior" },
+                    { name: "PID Control Systems", level: "Advanced" },
+                    { name: "FLRAA / DVE Sensor Suites", level: "SME" }
+                ],
+                software: [
+                    { name: "Python / AI Orchestration", level: "Expert" },
+                    { name: "C++ / Robot Operating System", level: "Advanced" },
+                    { name: "Full-Stack Development", level: "Advanced" },
+                    { name: "SQL & Relational Databases", level: "Advanced" },
+                    { name: "Excel VBA & PowerPivot", level: "Expert" }
+                ],
+                education: [
+                    { name: "B.S. Mechanical & Aerospace Eng.", level: "U. Florida" },
+                    { name: "Architecture & Systems Eng.", level: "MIT Cert" },
+                    { name: "MBSE & SysML Certification", level: "Expert" },
+                    { name: "Adobe Photoshop / Dreamweaver", level: "Certified" }
+                ]
+            };
+
+            const featuredProjects = [
+                {
+                    title: "Gemini-Imagen AI Pipeline",
+                    category: "AI & Automation",
+                    description: "An automated commerce engine using Large Language Models for trend spotting and Generative AI for high-fidelity apparel design and deployment.",
+                    tag: "Active 2026"
+                },
+                {
+                    title: "NASA Docking Architecture",
+                    category: "Space Systems",
+                    description: "Systems architecture for lunar docking mechanisms conforming to International Docking System Standards (IDSS).",
+                    tag: "Dynetics"
+                },
+                {
+                    title: "Automated Reconfiguration",
+                    category: "Patent",
+                    description: "Patent US20190322389A1: Systems and methods for the automated reconfiguration of airplane interiors.",
+                    tag: "US Patent Office",
+                    link: "https://patents.google.com/patent/US20190322389A1/en?q=(christian)&inventor=sarmiento&oq=sarmiento+christian"
+                }
+            ];
+
+            return (
+                <div className="min-h-screen">
+                    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
+                        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+                            <span className="text-xl font-bold tracking-tight text-blue-600 uppercase">Christian Sarmiento</span>
+                            <div className="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                                <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
+                                <a href="#journey" className="hover:text-blue-600 transition-colors">Journey</a>
+                                <a href="#experience" className="hover:text-blue-600 transition-colors">Competencies</a>
+                                <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
+                            </div>
+                            <a href="mailto:christiansarmiento@live.com" className="bg-slate-900 text-white px-4 py-2 rounded-full text-sm hover:bg-slate-800 transition-all">
+                                Contact
+                            </a>
+                        </div>
+                    </nav>
+
+                    <section id="about" className="pt-32 pb-20 px-6">
+                        <div className="max-w-4xl mx-auto text-center">
+                            <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-6 tracking-wider uppercase">
+                                Systems Engineering Lead & AI Architect
+                            </div>
+                            <h1 className="text-4xl md:text-7xl font-extrabold text-slate-900 mb-8 tracking-tight leading-tight">
+                                Bridging Digital Aesthetics <br/> 
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
+                                    & Aerospace Engineering
+                                </span>
+                            </h1>
+                            <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+                                A twenty-year evolution from crafting early web communities to architecting NASA-standard docking systems and Gemini-powered Artificial Intelligence pipelines.
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                <div className="flex items-center space-x-2 text-slate-500 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                                    <Icon name="shield" className="w-4 h-4" />
+                                    <span className="text-[10px] font-bold uppercase tracking-tight">Security Clearance: Secret</span>
+                                </div>
+                                <div className="flex items-center space-x-2 text-slate-500 bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                                    <Icon name="award" className="w-4 h-4" />
+                                    <span className="text-[10px] font-bold uppercase tracking-tight">U.S. Patent Holder</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="projects" className="py-20 bg-slate-100">
+                        <div className="max-w-6xl mx-auto px-6">
+                            <h2 className="text-3xl font-bold mb-12">Key Innovations</h2>
+                            <div className="grid md:grid-cols-3 gap-8">
+                                {featuredProjects.map((project, idx) => (
+                                    <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow group border border-slate-200 flex flex-col h-full">
+                                        <div className="text-xs font-bold text-blue-600 mb-4 uppercase tracking-widest">{project.category}</div>
+                                        <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{project.title}</h3>
+                                        <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">{project.description}</p>
+                                        <div className="flex items-center justify-between mt-4">
+                                            <div className="inline-block px-3 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-md font-mono uppercase">
+                                                {project.tag}
+                                            </div>
+                                            {project.link && (
+                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+                                                    <Icon name="external-link" className="w-4 h-4" />
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="journey" className="py-20 bg-white">
+                        <div className="max-w-4xl mx-auto px-6">
+                            <h2 className="text-3xl font-bold mb-12 text-center">Professional Evolution</h2>
+                            <div className="space-y-12">
+                                {timeline.map((item, idx) => (
+                                    <div key={idx} className="flex gap-6 relative">
+                                        {idx !== timeline.length - 1 && <div className="timeline-line"></div>}
+                                        <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center flex-shrink-0 z-10 text-slate-600">
+                                            <Icon name={item.icon} className="w-6 h-6" />
+                                        </div>
+                                        <div className="pt-2">
+                                            <span className="text-xs font-bold text-blue-600 uppercase tracking-tighter">{item.year}</span>
+                                            <h3 className="text-xl font-bold mb-2 tracking-tight">{item.title}</h3>
+                                            <p className="text-slate-600 leading-relaxed text-sm md:text-base">
+                                                {item.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="experience" className="py-20 bg-slate-900 text-white md:rounded-t-[4rem]">
+                        <div className="max-w-6xl mx-auto px-6">
+                            <h2 className="text-3xl font-bold mb-4 text-center">Competencies & Education</h2>
+                            <div className="flex flex-wrap justify-center gap-3 mt-8 mb-12">
+                                {Object.keys(skillGroups).map((key) => (
+                                    <button 
+                                        key={key}
+                                        onClick={() => setActiveTab(key)}
+                                        className={`px-6 py-2 rounded-full text-xs font-bold transition-all uppercase tracking-widest ${activeTab === key ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                                    >
+                                        {key}
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                                {skillGroups[activeTab].map((skill, idx) => (
+                                    <div key={idx} className="bg-slate-800/40 p-5 rounded-xl border border-slate-700 flex justify-between items-center group hover:border-blue-500 transition-colors">
+                                        <span className="font-semibold text-sm">{skill.name}</span>
+                                        <span className="text-[10px] uppercase font-bold text-slate-500 group-hover:text-blue-400 tracking-widest bg-slate-950 px-2 py-1 rounded">
+                                            {skill.level}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer className="py-20 bg-slate-900 text-white border-t border-slate-800">
+                        <div className="max-w-6xl mx-auto px-6 text-center">
+                            <h2 className="text-2xl md:text-3xl font-bold mb-8 italic tracking-tight">Let's architect the future together.</h2>
+                            <div className="flex justify-center space-x-6 mb-12">
+                                <a href="mailto:christiansarmiento@live.com" className="p-3 bg-white/5 hover:bg-white/10 rounded-full transition-colors border border-white/10">
+                                    <Icon name="mail" className="w-6 h-6" />
+                                </a>
+                                <a href="https://www.linkedin.com/in/christian-sarmiento/" target="_blank" className="p-3 bg-white/5 hover:bg-white/10 rounded-full transition-colors border border-white/10">
+                                    <Icon name="linkedin" className="w-6 h-6" />
+                                </a>
+                                <a href="https://github.com/fusionice" target="_blank" className="p-3 bg-white/5 hover:bg-white/10 rounded-full transition-colors border border-white/10">
+                                    <Icon name="github" className="w-6 h-6" />
+                                </a>
+                            </div>
+                            <p className="text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                                © 2026 Christian Sarmiento. Handcrafted with React & Tailwind CSS.
+                            </p>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
